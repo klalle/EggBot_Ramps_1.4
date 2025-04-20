@@ -9,13 +9,13 @@ I modified the files
     - to make it work with 32 microstep (all three jumpers with DRC8825)
     - make sure this matches arduino serial.begin in arduino code!
 
-## Install windows:
+## Install and run on windows:
 1. install [inkscape 0.92](https://inkscape.org/release/0.92.4/windows/) 
 2. copy the files in the /extensions directory to: `C:\Program Files\Inkscape\share\extensions` (could be `Program Files (x86)`)
 3. unzip the [EggBotExamples_v281](EggBotExamples_v281.zip) and open one of those in inkscape (they are just downloaded from the [wiki](https://wiki.evilmadscientist.com/Installing_software))
     - it contains a `EggBotTemplate.svg` that you can use to create your own!
 4. Extensions/EggBot/EggBot controll - just follow the [wiki tutorial](https://wiki.evilmadscientist.com/Making_your_first_plot)
-
+5. find svg-files: [svgrepo](https://www.svgrepo.com/collection/easter-14/) 
 
 
 EggBot
