@@ -16,6 +16,15 @@ I modified the files
     - it contains a `EggBotTemplate.svg` that you can use to create your own!
 4. Extensions/EggBot/EggBot controll - just follow the [wiki tutorial](https://wiki.evilmadscientist.com/Making_your_first_plot)
 5. find svg-files: [svgrepo](https://www.svgrepo.com/collection/easter-14/) 
+    - select -> ungroup (ctrl + u)
+    - select black lines -> del
+    - delete shadows
+    - overlaying objects should cut out the underlaying
+        - select the top object -> ctrl + d (duplicate)
+        - shift + select the underlaying that you want to cut 
+        - ctrl + - (path/difference) to use the top as a cutout stensile
+        - repeat for all objects that is overlapping
+    - select all -> ctrl + g to group
 
 
 EggBot
