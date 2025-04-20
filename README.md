@@ -1,4 +1,5 @@
 This is my modifications to the eggbot inkscape extension https://github.com/evil-mad/eggbot/releases EggBot_extensions_v281.zip to work with [a modified version of CNC-sphere-o-bot](https://github.com/klalle/CNC-sphere-o-bot_Ramps_1.4) that I run on an Arduino with Ramps 1.4 shield. 
+See tutorial etc [here](https://wiki.evilmadscientist.com/The_Original_Egg-Bot_Kit)
 
 I modified the files
 - ebb_serial.py
