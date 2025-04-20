@@ -47,7 +47,6 @@ from distutils.version import LooseVersion
 def version():      # Version number for this document
     return "0.14"   # Dated 2019-06-18
 
-
 def findPort():
     # Find first available EiBotBoard by searching USB ports.
     # Return serial port object.
@@ -62,6 +61,10 @@ def findPort():
             if port[1].startswith("EiBotBoard"):
                 ebb_port = port[0]  # Success; EBB found by name match.
                 break  # stop searching-- we are done.
+
+            if "VID:PID=1A86:7523" in port.hwid: # Arduino Mega (CH340-klon)
+                return port.device 
+            
         if ebb_port is None:
             for port in com_ports_list:
                 if port[2].startswith("USB VID:PID=04D8:FD92"):
@@ -200,26 +203,30 @@ def list_port_info():
 
 
 def listEBBports():
-    # Find and return a list of all EiBotBoard units
-    # connected via USB port.
     try:
         from serial.tools.list_ports import comports
     except ImportError:
         return None
-    if comports:
-        com_ports_list = list(comports())
-        ebb_ports_list = []
-        for port in com_ports_list:
-            port_has_ebb = False
-            if port[1].startswith("EiBotBoard"):
-                port_has_ebb = True
-            elif port[2].startswith("USB VID:PID=04D8:FD92"):
-                port_has_ebb = True
-            if port_has_ebb:
-                ebb_ports_list.append(port)
-        if ebb_ports_list:
-            return ebb_ports_list
 
+    ebb_ports_list = []
+    for port in list(comports()):
+        port_has_ebb = False
+        hwid = port.hwid if hasattr(port, 'hwid') else port[2]  # fallback för äldre pyserial-versioner
+
+        # Original EBB identifiering
+        if "EiBotBoard" in port.description:
+            port_has_ebb = True
+        elif "VID:PID=04D8:FD92" in hwid:
+            port_has_ebb = True
+
+        #Arduino Mega (CH340-klon)
+        elif "VID:PID=1A86:7523" in hwid:
+            port_has_ebb = True
+
+        if port_has_ebb:
+            ebb_ports_list.append(port)
+
+    return ebb_ports_list if ebb_ports_list else None
 
 def list_named_ebbs():
     # Return discriptive list of all EiBotBoard units
@@ -280,8 +287,8 @@ def testPort(port_name):
     """
     if port_name is not None:
         try:
-            serial_port = serial.Serial(port_name, timeout=1.0)  # 1 second timeout!
-
+            #serial_port = serial.Serial(port_name, timeout=1.0)  # 1 second timeout!
+            serial_port = serial.Serial(port_name, timeout=2.0, baudrate=115200) #alter the arduino code to same baudrate
             serial_port.flushInput()  # deprecated function name;
             # use serial_port.reset_input_buffer()
             # if we can be sure that we have pySerial 3+.

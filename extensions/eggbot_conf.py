@@ -34,6 +34,6 @@ Other _integer_ scaling values can be used as well, with similar scaling.
 
 """
 
-STEP_SCALE = 2
+STEP_SCALE = 1 # to make it work with 32 microstep (all three jumpers and DRC8825)
 
 MIN_GAP = 1.0  # Minimum pen-up movement that results in an actual pen lift.
