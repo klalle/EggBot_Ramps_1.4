@@ -1,4 +1,5 @@
-This is my modifications to the eggbot inkscape extension https://github.com/evil-mad/eggbot/releases EggBot_extensions_v281.zip.
+This is my modifications to the eggbot inkscape extension https://github.com/evil-mad/eggbot/releases EggBot_extensions_v281.zip to work with [a modified version of CNC-sphere-o-bot](https://github.com/klalle/CNC-sphere-o-bot_Ramps_1.4) that I run on an Arduino with Ramps 1.4 shield. 
+
 I modified the files
 - ebb_serial.py
     - to also look for Arduino Mega (CH340-clone)
@@ -25,6 +26,7 @@ This codebase was historically hosted at: https://code.google.com/p/eggbotcode/
 
 Extended documentation available at: http://wiki.evilmadscientist.com/eggbot
 
+------- from release page on original github:
 
 from the releases page: https://github.com/evil-mad/eggbot/releases
 
